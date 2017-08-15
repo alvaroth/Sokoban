@@ -2,7 +2,6 @@ package nl.voorbeeld.coolgame.objects;
 
 import android.graphics.Point;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -10,15 +9,18 @@ import java.util.ArrayList;
  */
 public class Level {
 
-    private ArrayList<Point> boxPositions;
+    private ArrayList<Point> boxStartPositions;
     private ArrayList<Point> wallPositions;
     private ArrayList<Point> finishPositions;
+    private ArrayList<Box> boxes;
     private Point playerStartPosition;
     private Player player;
 
     public Level() {
         wallPositions = new ArrayList<Point>();
-        boxPositions = new ArrayList<Point>();
+        boxStartPositions = new ArrayList<Point>();
+        boxes = new ArrayList<Box>();
+
         finishPositions = new ArrayList<Point>();
     }
 
@@ -28,6 +30,10 @@ public class Level {
 
     public void setPlayerStartPosition(Point playerStartPosition) {
         this.playerStartPosition = playerStartPosition;
+    }
+
+    public ArrayList<Box> getBoxes() {
+        return boxes;
     }
 
     public Player getPlayer() {
@@ -43,7 +49,7 @@ public class Level {
     }
 
     public void addBoxPositions(Point point) {
-        boxPositions.add(point);
+        boxStartPositions.add(point);
     }
 
     public void addFinishPositions(Point point) {
@@ -54,8 +60,8 @@ public class Level {
         return wallPositions;
     }
 
-    public ArrayList<Point> getBoxPositions() {
-        return boxPositions;
+    public ArrayList<Point> getBoxStartPositions() {
+        return boxStartPositions;
     }
 
     public ArrayList<Point> getFinishPositions() {

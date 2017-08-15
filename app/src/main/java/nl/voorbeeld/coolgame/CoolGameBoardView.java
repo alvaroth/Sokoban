@@ -49,6 +49,7 @@ public class CoolGameBoardView extends GameBoardView {
 
 		// Load the images for the GameObjects
 		spriteCache.loadTile(Box.BOX_IMAGE, R.drawable.box);
+		spriteCache.loadTile(Box.BOX_IMAGE_FINISH, R.drawable.box_finish);
 		spriteCache.loadTile(Player.PLAYER_IMAGE_FACE_DOWN, R.drawable.character_face_down);
 		spriteCache.loadTile(Player.PLAYER_IMAGE_FACE_LEFT, R.drawable.character_face_left);
 		spriteCache.loadTile(Player.PLAYER_IMAGE_FACE_RIGHT, R.drawable.character_face_right);

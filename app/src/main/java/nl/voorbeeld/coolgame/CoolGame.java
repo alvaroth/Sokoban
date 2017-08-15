@@ -95,13 +95,14 @@ public class CoolGame extends Game {
 		level1.addWallPositions(new Point(6,4));
 		level1.addWallPositions(new Point(6,5));
 		//add boxes for this level
-		level1.addBoxPositions(new Point(1,6));
-		level1.addBoxPositions(new Point(3,2));
-		level1.addBoxPositions(new Point(3,6));
-		level1.addBoxPositions(new Point(4,4));
-		level1.addBoxPositions(new Point(4,3));
-		level1.addBoxPositions(new Point(4,6));
-		level1.addBoxPositions(new Point(5,6));
+		level1.getBoxes().add(new Box(new Point(1,6)));
+		level1.getBoxes().add(new Box(new Point(3,2)));
+		level1.getBoxes().add(new Box(new Point(3,6)));
+		level1.getBoxes().add(new Box(new Point(4,4)));
+		level1.getBoxes().add(new Box(new Point(4,3)));
+		level1.getBoxes().add(new Box(new Point(4,6)));
+		level1.getBoxes().add(new Box(new Point(5,6)));
+
 		//add Finish spots for this level
 		level1.addFinishPositions(new Point(1,2));
 		level1.addFinishPositions(new Point(1,4));
@@ -112,31 +113,6 @@ public class CoolGame extends Game {
 		level1.addFinishPositions(new Point(6,6));
 
 
-		//create level2
-		level2 = new Level();
-		level2.setPlayer(new Player());
-		level2.addWallPositions(new Point(1,1));
-		level2.addWallPositions(new Point(2,1));
-		level2.addWallPositions(new Point(1,3));
-		level2.addWallPositions(new Point(2,3));
-		level2.addWallPositions(new Point(2,4));
-		level2.addWallPositions(new Point(3,4));
-		level2.addWallPositions(new Point(2,5));
-
-		level2.addWallPositions(new Point(6,1));
-		level2.addWallPositions(new Point(6,2));
-		level2.addWallPositions(new Point(6,3));
-		level2.addWallPositions(new Point(6,4));
-		level2.addWallPositions(new Point(6,5));
-
-		level2.addBoxPositions(new Point(3,2));
-		level2.addBoxPositions(new Point(4,4));
-		level2.addBoxPositions(new Point(4,3));
-		level2.addBoxPositions(new Point(3,6));
-		level2.addBoxPositions(new Point(4,6));
-		level2.addBoxPositions(new Point(5,6));
-		level2.addBoxPositions(new Point(1,6));
-
 		//set currentlevel
 		currentLevel = level1;
 
@@ -145,8 +121,8 @@ public class CoolGame extends Game {
 		for (Point p : currentLevel.getWallPositions()) {
 			board.addGameObject(new Wall(),p.x,p.y);
 		}
-		for (Point p : currentLevel.getBoxPositions()) {
-			board.addGameObject(new Box(),p.x,p.y);
+		for (Box b : currentLevel.getBoxes()) {
+			board.addGameObject(b,b.getStartPosition().x,b.getStartPosition().y);
 		}
 		System.out.println(getGameBoard().getObject(7,4));
 
