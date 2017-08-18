@@ -18,8 +18,15 @@ public class Player extends GameObject {
     private boolean faceDown = false;
     private boolean faceUp = false;
 
-    public Player() {
+    public Point getStartPosition() {
+        return startPosition;
+    }
+
+    private Point startPosition;
+
+    public Player(Point startPosition) {
         super();
+        this.startPosition = startPosition;
     }
 
     @Override

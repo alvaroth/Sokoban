@@ -1,7 +1,5 @@
 package nl.saxion.act.playground.model;
 
-import java.lang.reflect.Array;
-import java.util.ArrayList;
 import java.util.Observable;
 
 import android.graphics.Point;
@@ -10,8 +8,6 @@ import android.util.Log;
 import nl.voorbeeld.coolgame.CoolGame;
 import nl.voorbeeld.coolgame.objects.Box;
 import nl.voorbeeld.coolgame.objects.Finish;
-import nl.voorbeeld.coolgame.objects.Player;
-import nl.voorbeeld.coolgame.objects.Wall;
 
 /**
  * The game board, which is a rectangular array of GameObject.
@@ -76,16 +72,11 @@ public abstract class GameBoard extends Observable {
      * @throws IllegalArgumentException if (x,y) is not empty
      */
     public void addGameObject(GameObject obj, int x, int y) {
-
-        if (gameBoard[x][y] != null) {
-            if (gameBoard[x][y] instanceof Box) {
-                System.out.println("lol");
-            } else {
-                throw new IllegalArgumentException("Destination already contains an object");
-            }
-        } else {
+        if (gameBoard[x][y] == null || gameBoard[x][y] instanceof Finish) {
             gameBoard[x][y] = obj;
             obj.setPosition(x, y);
+        } else {
+            throw new IllegalArgumentException("Destination already contains an object");
         }
     }
 
@@ -182,10 +173,16 @@ public abstract class GameBoard extends Observable {
      */
     public void updateView() {
         sokoban = (CoolGame) getGame();
+        int countboxes = 0;
         for (Box box : sokoban.getCurrentLevel().getBoxes()) {
             box.setBoxFinished(checkIfBoxFinished(box));
+            if (box.isBoxFinished()) {
+                countboxes++;
+            }
         }
-
+        if (countboxes == sokoban.getCurrentLevel().getBoxes().size()) {
+            System.out.println("LOL");
+        }
         Log.d(TAG, "Updating game view");
 
         setChanged();
@@ -195,12 +192,11 @@ public abstract class GameBoard extends Observable {
     }
 
     private boolean checkIfBoxFinished(Box box) {
-        for (Point point : sokoban.getCurrentLevel().getFinishPositions()) {
-            if (box.getPositionX() == point.x && box.getPositionY() == point.y) {
+        for (Finish finish : sokoban.getCurrentLevel().getFinishes()) {
+            if (box.getPositionX() == finish.getPositionX() && box.getPositionY() == finish.getPositionY()) {
                 return true;
-            }
-            if (gameBoard[point.x][point.y] == null) {
-                addGameObject(new Finish(), point.x, point.y);
+            } else if (gameBoard[finish.getPositionX()][finish.getPositionY()] == null) {
+                addGameObject(finish, finish.getPositionX(), finish.getPositionY());
             }
         }
         return false;

@@ -78,9 +78,8 @@ public class CoolGame extends Game {
 		//create level1
 		level1 = new Level();
 		//set the start position of the player for this level
-		level1.setPlayerStartPosition(new Point(2,2));
 		//set the player Object for this level
-		level1.setPlayer(new Player());
+		level1.setPlayer(new Player(new Point(2,2)));
 		//add walls for this level
 		level1.addWallPositions(new Point(1,1));
 		level1.addWallPositions(new Point(2,1));
@@ -104,30 +103,28 @@ public class CoolGame extends Game {
 		level1.getBoxes().add(new Box(new Point(5,6)));
 
 		//add Finish spots for this level
-		level1.addFinishPositions(new Point(1,2));
-		level1.addFinishPositions(new Point(1,4));
-		level1.addFinishPositions(new Point(3,6));
-		level1.addFinishPositions(new Point(4,5));
-		level1.addFinishPositions(new Point(4,7));
-		level1.addFinishPositions(new Point(5,3));
-		level1.addFinishPositions(new Point(6,6));
+		level1.addFinishPositions(new Finish(new Point(1,2)));
+		level1.addFinishPositions(new Finish(new Point(1,4)));
+		level1.addFinishPositions(new Finish(new Point(3,6)));
+		level1.addFinishPositions(new Finish(new Point(4,5)));
+		level1.addFinishPositions(new Finish(new Point(4,7)));
+		level1.addFinishPositions(new Finish(new Point(5,3)));
+		level1.addFinishPositions(new Finish(new Point(6,6)));
 
 
 		//set currentlevel
 		currentLevel = level1;
 
 		//draw the currentlevel
-		board.addGameObject(currentLevel.getPlayer(),currentLevel.getPlayerStartPosition().x,currentLevel.getPlayerStartPosition().y);
+		board.addGameObject(currentLevel.getPlayer(),currentLevel.getPlayer().getStartPosition().x,currentLevel.getPlayer().getStartPosition().y);
 		for (Point p : currentLevel.getWallPositions()) {
 			board.addGameObject(new Wall(),p.x,p.y);
 		}
+		for (Finish f : currentLevel.getFinishes()) {
+			board.addGameObject(f,f.getStartPosition().x,f.getStartPosition().y);
+		}
 		for (Box b : currentLevel.getBoxes()) {
 			board.addGameObject(b,b.getStartPosition().x,b.getStartPosition().y);
-		}
-		System.out.println(getGameBoard().getObject(7,4));
-
-		for (Point p : currentLevel.getFinishPositions()) {
-			board.addGameObject(new Finish(),p.x,p.y);
 		}
 
 		// Redraw the game view

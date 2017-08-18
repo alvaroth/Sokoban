@@ -11,9 +11,8 @@ public class Level {
 
     private ArrayList<Point> boxStartPositions;
     private ArrayList<Point> wallPositions;
-    private ArrayList<Point> finishPositions;
+    private ArrayList<Finish> finishes;
     private ArrayList<Box> boxes;
-    private Point playerStartPosition;
     private Player player;
 
     public Level() {
@@ -21,15 +20,7 @@ public class Level {
         boxStartPositions = new ArrayList<Point>();
         boxes = new ArrayList<Box>();
 
-        finishPositions = new ArrayList<Point>();
-    }
-
-    public Point getPlayerStartPosition() {
-        return playerStartPosition;
-    }
-
-    public void setPlayerStartPosition(Point playerStartPosition) {
-        this.playerStartPosition = playerStartPosition;
+        finishes = new ArrayList<Finish>();
     }
 
     public ArrayList<Box> getBoxes() {
@@ -48,12 +39,8 @@ public class Level {
        wallPositions.add(point);
     }
 
-    public void addBoxPositions(Point point) {
-        boxStartPositions.add(point);
-    }
-
-    public void addFinishPositions(Point point) {
-        finishPositions.add(point);
+    public void addFinishPositions(Finish finish) {
+        finishes.add(finish);
     }
 
     public ArrayList<Point> getWallPositions() {
@@ -64,7 +51,7 @@ public class Level {
         return boxStartPositions;
     }
 
-    public ArrayList<Point> getFinishPositions() {
-        return finishPositions;
+    public ArrayList<Finish> getFinishes() {
+        return finishes;
     }
 }
