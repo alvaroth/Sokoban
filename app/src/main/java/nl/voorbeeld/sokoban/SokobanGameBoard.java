@@ -1,20 +1,20 @@
-package nl.voorbeeld.coolgame;
+package nl.voorbeeld.sokoban;
 
 import nl.saxion.act.playground.model.GameBoard;
 
 /**
- * The game board for CoolGame.
+ * The game board for Sokoban.
  * 
- * @author Paul de Groot
+ * @author Jeffrey van der Klij
  */
-public class CoolGameBoard extends GameBoard {
+public class SokobanGameBoard extends GameBoard {
 	private static final int GAMEBOARD_WIDTH = 8;
 	private static final int GAMEBOARD_HEIGHT = 9;
 
 	/**
 	 * Create a new game board.
 	 */
-	public CoolGameBoard() {
+	public SokobanGameBoard() {
 		super(GAMEBOARD_WIDTH, GAMEBOARD_HEIGHT);
 	}
 

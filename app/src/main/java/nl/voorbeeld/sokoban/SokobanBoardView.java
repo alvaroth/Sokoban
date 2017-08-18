@@ -1,29 +1,29 @@
-package nl.voorbeeld.coolgame;
+package nl.voorbeeld.sokoban;
 
 import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.view.GameBoardView;
-import nl.voorbeeld.coolgame.objects.Box;
-import nl.voorbeeld.coolgame.objects.Finish;
-import nl.voorbeeld.coolgame.objects.Player;
-import nl.voorbeeld.coolgame.objects.Wall;
+import nl.voorbeeld.sokoban.objects.Box;
+import nl.voorbeeld.sokoban.objects.Finish;
+import nl.voorbeeld.sokoban.objects.Player;
+import nl.voorbeeld.sokoban.objects.Wall;
 
 import android.content.Context;
 import android.util.AttributeSet;
 import android.util.Log;
 
 /**
- * A view on the CoolGame game board.
+ * A view on the Sokoban game board.
  * 
  * @author Jan Stroet
  * @author Paul de Groot
  */
-public class CoolGameBoardView extends GameBoardView {
+public class SokobanBoardView extends GameBoardView {
 	private static final String TAG = "GameView";
 
 	/**
 	 * Constructor.
 	 */
-	public CoolGameBoardView(Context context, AttributeSet attrs) {
+	public SokobanBoardView(Context context, AttributeSet attrs) {
 		super(context, attrs);
 		initGameView();
 	}
@@ -31,7 +31,7 @@ public class CoolGameBoardView extends GameBoardView {
 	/**
 	 * Constructor.
 	 */
-	public CoolGameBoardView(Context context, AttributeSet attrs, int defStyle) {
+	public SokobanBoardView(Context context, AttributeSet attrs, int defStyle) {
 		super(context, attrs, defStyle);
 		initGameView();
 	}

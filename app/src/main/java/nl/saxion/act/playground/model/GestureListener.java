@@ -2,18 +2,16 @@ package nl.saxion.act.playground.model;
 
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
-import android.widget.Toast;
 
-import nl.voorbeeld.coolgame.CoolGame;
-import nl.voorbeeld.coolgame.objects.Player;
+import nl.voorbeeld.sokoban.Sokoban;
 
 
 public class GestureListener extends SimpleOnGestureListener {
     private static final int SWIPE_MIN_DISTANCE = 120;
     private static final int SWIPE_THRESHOLD_VELOCITY = 200;
-    private CoolGame game;
+    private Sokoban game;
 
-    public GestureListener(CoolGame game) {
+    public GestureListener(Sokoban game) {
         this.game = game;
     }
 

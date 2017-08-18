@@ -2,12 +2,11 @@ package nl.saxion.act.playground.model;
 
 import java.util.Observable;
 
-import android.graphics.Point;
 import android.util.Log;
 
-import nl.voorbeeld.coolgame.CoolGame;
-import nl.voorbeeld.coolgame.objects.Box;
-import nl.voorbeeld.coolgame.objects.Finish;
+import nl.voorbeeld.sokoban.Sokoban;
+import nl.voorbeeld.sokoban.objects.Box;
+import nl.voorbeeld.sokoban.objects.Finish;
 
 /**
  * The game board, which is a rectangular array of GameObject.
@@ -31,7 +30,7 @@ public abstract class GameBoard extends Observable {
     /**
      * The game instance
      */
-    private CoolGame sokoban;
+    private Sokoban sokoban;
 
     /**
      * The game objects on the board.
@@ -172,7 +171,7 @@ public abstract class GameBoard extends Observable {
      * and want to make your changes visible.
      */
     public void updateView() {
-        sokoban = (CoolGame) getGame();
+        sokoban = (Sokoban) getGame();
         int countboxes = 0;
         for (Box box : sokoban.getCurrentLevel().getBoxes()) {
             box.setBoxFinished(checkIfBoxFinished(box));

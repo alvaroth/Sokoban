@@ -1,23 +1,23 @@
-package nl.voorbeeld.coolgame;
+package nl.voorbeeld.sokoban;
 
 import android.graphics.Point;
 
 import nl.saxion.act.playground.model.Game;
 import nl.saxion.act.playground.model.GameBoard;
-import nl.voorbeeld.coolgame.objects.Box;
-import nl.voorbeeld.coolgame.objects.Level;
-import nl.voorbeeld.coolgame.objects.Player;
-import nl.voorbeeld.coolgame.objects.Wall;
-import nl.voorbeeld.coolgame.objects.Finish;
+import nl.voorbeeld.sokoban.objects.Box;
+import nl.voorbeeld.sokoban.objects.Level;
+import nl.voorbeeld.sokoban.objects.Player;
+import nl.voorbeeld.sokoban.objects.Wall;
+import nl.voorbeeld.sokoban.objects.Finish;
 
 /**
  * Awesome game for the Speelveld-project.
  * 
  * @author Paul de Groot
  */
-public class CoolGame extends Game {
+public class Sokoban extends Game {
 	/** Tag used for log messages */
-	public static final String TAG = "CoolGame";
+	public static final String TAG = "Sokoban";
 
 	/** Reference to the main activity, so some labels can be updated. */
 	private MainActivity activity;
@@ -39,9 +39,9 @@ public class CoolGame extends Game {
 	 * 
 	 * @param activity  The main activity
 	 */
-	public CoolGame(MainActivity activity) {
+	public Sokoban(MainActivity activity) {
 		// Create a new game board and couple it to this game
-		super(new CoolGameBoard());
+		super(new SokobanGameBoard());
 		
 		// Store reference to the main activity
 		// This is used to update the score label
@@ -110,7 +110,6 @@ public class CoolGame extends Game {
 		level1.addFinishPositions(new Finish(new Point(4,7)));
 		level1.addFinishPositions(new Finish(new Point(5,3)));
 		level1.addFinishPositions(new Finish(new Point(6,6)));
-
 
 		//set currentlevel
 		currentLevel = level1;

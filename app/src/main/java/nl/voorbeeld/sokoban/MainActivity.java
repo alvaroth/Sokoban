@@ -1,4 +1,4 @@
-package nl.voorbeeld.coolgame;
+package nl.voorbeeld.sokoban;
 
 import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.model.GameBoard;
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -20,8 +22,8 @@ import android.widget.Toast;
  * @author Jan Stroet
  */
 public class MainActivity extends Activity {
-	private CoolGame game;
-	private CoolGameBoardView gameView;
+	private Sokoban game;
+	private SokobanBoardView gameView;
 	private TextView scoreLabel;
 
 	/** Called when the activity is first created. */
@@ -29,15 +31,22 @@ public class MainActivity extends Activity {
 	public void onCreate(Bundle savedInstanceState) {
 		// Load main.xml
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.main);
+		//Remove title bar
+		this.requestWindowFeature(Window.FEATURE_NO_TITLE);
+
+		//Remove notification bar
+		this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
+
+		//set content view AFTER ABOVE sequence (to avoid crash)
+		this.setContentView(R.layout.main);
 
 		// Find some of the user interface elements
-		gameView = (CoolGameBoardView) findViewById(R.id.game);
+		gameView = (SokobanBoardView) findViewById(R.id.game);
 		scoreLabel = (TextView) findViewById(R.id.scoreTextView);
 
 		// Create the game object. This contains all data and functionality
 		// belonging to the game
-		game = new CoolGame(this);
+		game = new Sokoban(this);
 
 		// Tell the game board view which game board to show
 		GameBoard board = game.getGameBoard();
@@ -72,7 +81,7 @@ public class MainActivity extends Activity {
 	/**
 	 * Returns the view on the game board.
 	 */
-	public CoolGameBoardView getGameBoardView() {
+	public SokobanBoardView getGameBoardView() {
 		return gameView;
 	}
 
