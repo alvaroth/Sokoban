@@ -17,7 +17,7 @@ import nl.voorbeeld.sokoban.objects.Finish;
  * which will be called when the user clicked on a tile which had no game object
  * on it.
  *
- * @author Paul de Groot
+ * @author Jeffrey van der Klij
  */
 public abstract class GameBoard extends Observable {
     private static final String TAG = "Playground";
@@ -93,7 +93,6 @@ public abstract class GameBoard extends Observable {
 
 
         gameBoard[oldX][oldY] = null;
-
         //check if the next space is free
         if (gameBoard[newX][newY] != null) {
             //check if next space is a box
@@ -143,7 +142,7 @@ public abstract class GameBoard extends Observable {
                 removeObject(gameBoard[newX][newY]);
                 moveObject(obj, newX, newY);
             } else {
-                //you're trying to move into a wall
+                //you're trying to move into a wall stop it
                 throw new IllegalArgumentException("Destination already contains an object");
             }
         }
@@ -172,15 +171,15 @@ public abstract class GameBoard extends Observable {
      */
     public void updateView() {
         sokoban = (Sokoban) getGame();
-        int countboxes = 0;
+        int finishedBoxes = 0;
         for (Box box : sokoban.getCurrentLevel().getBoxes()) {
             box.setBoxFinished(checkIfBoxFinished(box));
             if (box.isBoxFinished()) {
-                countboxes++;
+                finishedBoxes++;
             }
         }
-        if (countboxes == sokoban.getCurrentLevel().getBoxes().size()) {
-            System.out.println("LOL");
+        if (finishedBoxes == sokoban.getCurrentLevel().getBoxes().size()) {
+            sokoban.setNextLevel();
         }
         Log.d(TAG, "Updating game view");
 
@@ -196,6 +195,7 @@ public abstract class GameBoard extends Observable {
                 return true;
             } else if (gameBoard[finish.getPositionX()][finish.getPositionY()] == null) {
                 addGameObject(finish, finish.getPositionX(), finish.getPositionY());
+                updateView();
             }
         }
         return false;
