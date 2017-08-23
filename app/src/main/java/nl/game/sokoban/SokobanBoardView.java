@@ -1,11 +1,11 @@
-package nl.voorbeeld.sokoban;
+package nl.game.sokoban;
 
 import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.view.GameBoardView;
-import nl.voorbeeld.sokoban.objects.Box;
-import nl.voorbeeld.sokoban.objects.Finish;
-import nl.voorbeeld.sokoban.objects.Player;
-import nl.voorbeeld.sokoban.objects.Wall;
+import nl.game.sokoban.objects.Box;
+import nl.game.sokoban.objects.Finish;
+import nl.game.sokoban.objects.Player;
+import nl.game.sokoban.objects.Wall;
 
 import android.content.Context;
 import android.util.AttributeSet;
@@ -14,8 +14,7 @@ import android.util.Log;
 /**
  * A view on the Sokoban game board.
  * 
- * @author Jan Stroet
- * @author Paul de Groot
+ * @author Jeffrey van der Klij
  */
 public class SokobanBoardView extends GameBoardView {
 	private static final String TAG = "GameView";

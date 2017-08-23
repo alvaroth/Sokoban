@@ -1,26 +1,22 @@
-package nl.voorbeeld.sokoban;
+package nl.game.sokoban;
 
-import android.app.Activity;
-import android.app.AlertDialog;
 import android.graphics.Point;
 import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import java.util.ArrayList;
 
-import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.model.Game;
 import nl.saxion.act.playground.model.GameBoard;
-import nl.voorbeeld.sokoban.objects.Box;
-import nl.voorbeeld.sokoban.objects.Level;
-import nl.voorbeeld.sokoban.objects.Player;
-import nl.voorbeeld.sokoban.objects.Wall;
-import nl.voorbeeld.sokoban.objects.Finish;
+import nl.game.sokoban.objects.Box;
+import nl.game.sokoban.objects.Level;
+import nl.game.sokoban.objects.Player;
+import nl.game.sokoban.objects.Wall;
+import nl.game.sokoban.objects.Finish;
 
 /**
- * Awesome game for the Speelveld-project.
- *
- * @author Paul de Groot
+ *  The game
+ * @author Jeffrey van der Klij
  */
 public class Sokoban extends Game {
     /**

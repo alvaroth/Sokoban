@@ -1,4 +1,4 @@
-package nl.voorbeeld.sokoban;
+package nl.game.sokoban;
 
 import nl.saxion.act.playground.model.GameBoard;
 

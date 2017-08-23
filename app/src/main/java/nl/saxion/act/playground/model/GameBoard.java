@@ -4,10 +4,10 @@ import java.util.Observable;
 
 import android.util.Log;
 
-import nl.voorbeeld.sokoban.Sokoban;
-import nl.voorbeeld.sokoban.objects.Box;
-import nl.voorbeeld.sokoban.objects.Finish;
-import nl.voorbeeld.sokoban.objects.Player;
+import nl.game.sokoban.Sokoban;
+import nl.game.sokoban.objects.Box;
+import nl.game.sokoban.objects.Finish;
+import nl.game.sokoban.objects.Player;
 
 /**
  * The game board, which is a rectangular array of GameObject.

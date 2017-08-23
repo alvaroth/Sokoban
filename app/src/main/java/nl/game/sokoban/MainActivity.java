@@ -1,4 +1,4 @@
-package nl.voorbeeld.sokoban;
+package nl.game.sokoban;
 
 import nl.saxion.act.playground.R;
 import nl.saxion.act.playground.model.GameBoard;
@@ -18,13 +18,10 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import java.util.ArrayList;
-
 /**
- * The main activity.
+ * The main game activity.
  * 
- * @author Paul de Groot
- * @author Jan Stroet
+ * @author Jeffrey van der Klij
  */
 public class MainActivity extends Activity {
 	private Sokoban game;

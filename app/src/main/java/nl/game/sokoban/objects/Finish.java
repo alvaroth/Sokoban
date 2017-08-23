@@ -1,4 +1,4 @@
-package nl.voorbeeld.sokoban.objects;
+package nl.game.sokoban.objects;
 
 import android.graphics.Point;
 

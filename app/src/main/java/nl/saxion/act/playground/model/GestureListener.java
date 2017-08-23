@@ -3,8 +3,11 @@ package nl.saxion.act.playground.model;
 import android.view.GestureDetector.SimpleOnGestureListener;
 import android.view.MotionEvent;
 
-import nl.voorbeeld.sokoban.Sokoban;
-
+import nl.game.sokoban.Sokoban;
+/**
+ *  The gesture listener class for swipe movement
+ * @author Jeffrey van der Klij
+ */
 
 public class GestureListener extends SimpleOnGestureListener {
     private static final int SWIPE_MIN_DISTANCE = 120;
