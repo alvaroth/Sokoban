@@ -2,16 +2,18 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="nl.saxion.act.playground"
     android:versionCode="1"
-    android:versionName="1.0" >
+    android:versionName="1.0">
 
     <application
-        android:theme="@style/app_theme"
         android:icon="@drawable/ic_launcher"
-        android:label="@string/app_name">
+        android:label="@string/app_name"
+        android:theme="@style/app_theme">
         <activity
-            android:label="@string/app_name"
-            android:name="nl.voorbeeld.sokoban.MainActivity" >
-            <intent-filter >
+            android:name="nl.voorbeeld.sokoban.MainActivity"
+            android:label="@string/app_name">
+        </activity>
+        <activity android:name="nl.voorbeeld.sokoban.MainMenuActivity">
+            <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />

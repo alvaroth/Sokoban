@@ -5,15 +5,20 @@ import nl.saxion.act.playground.model.GameBoard;
 import nl.saxion.act.playground.model.GestureListener;
 
 import android.app.Activity;
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
 import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.util.ArrayList;
 
 /**
  * The main activity.
@@ -25,6 +30,7 @@ public class MainActivity extends Activity {
 	private Sokoban game;
 	private SokobanBoardView gameView;
 	private TextView scoreLabel;
+	private TextView levelLabel;
 
 	/** Called when the activity is first created. */
 	@Override
@@ -43,6 +49,7 @@ public class MainActivity extends Activity {
 		// Find some of the user interface elements
 		gameView = (SokobanBoardView) findViewById(R.id.game);
 		scoreLabel = (TextView) findViewById(R.id.scoreTextView);
+		levelLabel = (TextView) findViewById(R.id.levelTextView);
 
 		// Create the game object. This contains all data and functionality
 		// belonging to the game
@@ -75,7 +82,15 @@ public class MainActivity extends Activity {
 	 * @param newScore  The new score.
 	 */
 	public void updateScoreLabel(int newScore) {
-		scoreLabel.setText("Score: " + newScore);
+		scoreLabel.setText(getResources().getString(R.string.turns)+newScore);
+	}
+	/**
+	 * Set a new level on the score label
+	 *
+	 * @param levelnumber  The new level index.
+	 */
+	public void updateLevelLabel(int levelnumber) {
+		levelLabel.setText(getResources().getString(R.string.level)+levelnumber);
 	}
 
 	/**
@@ -91,15 +106,43 @@ public class MainActivity extends Activity {
 	 */
 	private void registerNewGameButton() {
 		// Find the 'New Game'-button in the activity
-		final Button button1 = (Button) findViewById(R.id.newGameButton);
-		
-		// Add a click listener to the button that calls initNewGame()
-		button1.setOnClickListener(new View.OnClickListener() {
+		final Button homeButton = (Button) findViewById(R.id.homeButton);
+		final Button resetButton = (Button) findViewById(R.id.newGameButton);
+
+		// Add a click listener to the button that calls buildLevel()
+		resetButton.setOnClickListener(new View.OnClickListener() {
 			@Override
 			public void onClick(View v) {
 				game.buildLevel();
 			}
 		});
+		homeButton.setOnClickListener(new View.OnClickListener() {
+			@Override
+			public void onClick(View v) {
+				finish();
+			}
+		});
+	}
+
+	public void gameFinished(ArrayAdapter scoresAdapter){
+		Toast.makeText(getApplicationContext(), "Well done! You completed the whole game! Thanks for playing!",
+				Toast.LENGTH_SHORT).show();
+
+		AlertDialog.Builder builderSingle = new AlertDialog.Builder(this);
+		builderSingle.setIcon(R.drawable.ic_launcher);
+		builderSingle.setTitle("Your scores were:");
+
+		builderSingle.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+			@Override
+			public void onClick(DialogInterface dialog, int which) {
+				dialog.dismiss();
+				finish();
+			}
+		});
+		builderSingle.setAdapter(scoresAdapter, null);
+		builderSingle.show();
+
+
 	}
 
 }

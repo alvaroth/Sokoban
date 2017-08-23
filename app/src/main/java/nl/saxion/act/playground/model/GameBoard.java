@@ -79,6 +79,7 @@ public abstract class GameBoard extends Observable {
         } else {
             throw new IllegalArgumentException("Destination already contains an object");
         }
+
     }
 
     /**
@@ -151,6 +152,7 @@ public abstract class GameBoard extends Observable {
         gameBoard[newX][newY] = obj;
         obj.setPosition(newX, newY);
         if(obj instanceof Player){
+            sokoban.increaseScore();
             int finishedBoxes = 0;
             for (Box box : sokoban.getCurrentLevel().getBoxes()) {
                 box.setBoxFinished(checkIfBoxFinished(box));

@@ -4,5 +4,7 @@
     <string name="home">Home</string>
     <string name="newgame">New Game</string>
     <string name="resetgame">Reset</string>
-    <string name="score">Score: </string>
-  </resources>
+    <string name="turns">Turns: </string>
+    <string name="level">Level: </string>
+    <string name="finished">"Well done! You completed the whole game! Thanks for playing!"</string>
+</resources>

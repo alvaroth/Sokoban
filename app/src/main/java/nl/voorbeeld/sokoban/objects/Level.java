@@ -14,6 +14,7 @@ public class Level {
     private ArrayList<Finish> finishes;
     private ArrayList<Box> boxes;
     private Player player;
+    private int turns;
 
     public Level() {
         wallPositions = new ArrayList<Point>();
@@ -33,6 +34,14 @@ public class Level {
 
     public void setPlayer(Player player) {
         this.player = player;
+    }
+
+    public int getTurns() {
+        return turns;
+    }
+
+    public void setTurns(int turns) {
+        this.turns = turns;
     }
 
     public void addWallPositions(Point point) {
