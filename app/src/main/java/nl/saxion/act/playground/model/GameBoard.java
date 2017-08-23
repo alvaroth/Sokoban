@@ -7,6 +7,7 @@ import android.util.Log;
 import nl.voorbeeld.sokoban.Sokoban;
 import nl.voorbeeld.sokoban.objects.Box;
 import nl.voorbeeld.sokoban.objects.Finish;
+import nl.voorbeeld.sokoban.objects.Player;
 
 /**
  * The game board, which is a rectangular array of GameObject.
@@ -46,6 +47,7 @@ public abstract class GameBoard extends Observable {
      */
     public GameBoard(int width, int height) {
         this.gameBoard = new GameObject[width][height];
+
     }
 
     /**
@@ -146,11 +148,21 @@ public abstract class GameBoard extends Observable {
                 throw new IllegalArgumentException("Destination already contains an object");
             }
         }
-
-
         gameBoard[newX][newY] = obj;
         obj.setPosition(newX, newY);
-        game.getGameBoard().updateView();
+        if(obj instanceof Player){
+            int finishedBoxes = 0;
+            for (Box box : sokoban.getCurrentLevel().getBoxes()) {
+                box.setBoxFinished(checkIfBoxFinished(box));
+                if (box.isBoxFinished()) {
+                    finishedBoxes++;
+                }
+            }
+            if (finishedBoxes == sokoban.getCurrentLevel().getBoxes().size()) {
+                sokoban.setNextLevel();
+            }
+        }
+       updateView();
     }
 
     /**
@@ -170,17 +182,6 @@ public abstract class GameBoard extends Observable {
      * and want to make your changes visible.
      */
     public void updateView() {
-        sokoban = (Sokoban) getGame();
-        int finishedBoxes = 0;
-        for (Box box : sokoban.getCurrentLevel().getBoxes()) {
-            box.setBoxFinished(checkIfBoxFinished(box));
-            if (box.isBoxFinished()) {
-                finishedBoxes++;
-            }
-        }
-        if (finishedBoxes == sokoban.getCurrentLevel().getBoxes().size()) {
-            sokoban.setNextLevel();
-        }
         Log.d(TAG, "Updating game view");
 
         setChanged();
@@ -189,7 +190,8 @@ public abstract class GameBoard extends Observable {
 
     }
 
-    private boolean checkIfBoxFinished(Box box) {
+    public boolean checkIfBoxFinished(Box box) {
+        sokoban = (Sokoban) getGame();
         for (Finish finish : sokoban.getCurrentLevel().getFinishes()) {
             if (box.getPositionX() == finish.getPositionX() && box.getPositionY() == finish.getPositionY()) {
                 return true;

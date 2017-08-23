@@ -197,6 +197,9 @@ public class Sokoban extends Game {
         for (Box b : currentLevel.getBoxes()) {
             board.addGameObject(b, b.getStartPosition().x, b.getStartPosition().y);
         }
+        for (Box box : getCurrentLevel().getBoxes()) {
+            box.setBoxFinished(board.checkIfBoxFinished(box));
+        }
 //		 Redraw the game view
         board.updateView();
 
