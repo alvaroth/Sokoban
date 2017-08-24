@@ -102,15 +102,21 @@ public abstract class GameBoard extends Observable {
             if (getObject(newX, newY) instanceof Box) {
                 //it is a box, check where it has to go and if that space is free OR a finish point
                 if (newX > oldX) {
+                    //New X is bigger than the old one so check left to the box of that space is free
                     if (gameBoard[newX + 1][newY] == null) {
+                        //the space is free so the function gets called recursively  to move the box forward before moving the player
                         moveObject(getObject(newX, newY), newX + 1, newY);
                     } else if (gameBoard[newX + 1][newY] instanceof Finish) {
+                        //space is a finish point. So the point is removed and the box is put on top of it
                         removeObject(gameBoard[newX + 1][newY]);
                         moveObject(getObject(newX, newY), newX + 1, newY);
                     } else {
+                        //the space next to the box is a wall or another box
                         throw new IllegalArgumentException("Destination already contains an object");
                     }
                 } else if (newX < oldX) {
+                    //New X is bigger than the old one so check right to the box of that space is free
+
                     if (gameBoard[newX - 1][newY] == null) {
                         moveObject(getObject(newX, newY), newX - 1, newY);
                     } else if (gameBoard[newX - 1][newY] instanceof Finish) {
@@ -120,6 +126,7 @@ public abstract class GameBoard extends Observable {
                         throw new IllegalArgumentException("Destination already contains an object");
                     }
                 } else if (newY > oldY) {
+                    //New Y is bigger than the old one so check below to the box of that space is free
                     if (gameBoard[newX][newY + 1] == null) {
                         moveObject(getObject(newX, newY), newX, newY + 1);
                     } else if (gameBoard[newX][newY + 1] instanceof Finish) {
@@ -129,6 +136,7 @@ public abstract class GameBoard extends Observable {
                         throw new IllegalArgumentException("Destination already contains an object");
                     }
                 } else if (newY < oldY) {
+                    //New Y is smaller than the old one so check above to the box of that space is free
                     if (gameBoard[newX][newY - 1] == null) {
                         moveObject(getObject(newX, newY), newX, newY - 1);
                     } else if (gameBoard[newX][newY - 1] instanceof Finish) {
@@ -191,6 +199,16 @@ public abstract class GameBoard extends Observable {
         notifyObservers();
 
     }
+
+    /**
+     * Check for each finish positon if it matches the box's position
+     * if it does it returns true so the box will change color
+     * also checks if a finish position no longer contains a box so it will be re-added
+     * to the board.
+     * It will then update the board.
+     * @param box
+     * @return boolean
+     */
 
     public boolean checkIfBoxFinished(Box box) {
         sokoban = (Sokoban) getGame();

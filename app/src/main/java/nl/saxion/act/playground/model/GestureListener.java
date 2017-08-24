@@ -43,6 +43,5 @@ public class GestureListener extends SimpleOnGestureListener {
             System.out.println(ex.getMessage());
         }
         return false;
-
     }
 }
